@@ -3,5 +3,118 @@
 :source-highlighter: pygments
 :pygments-style: paraiso-dark
 :revealjs_totalTime: 1200
+:revealjs_width: 1400
+
+== Background
+
+* Git currently defaults to creating repositories with SHA-1
+* SHA-256 repositories are more secure (and soon, Git 3.0's default)
+* We want a way to convert between them
+* We don't want everyone to have to convert over at once
+
+== Interoperability
+
+* Repositories can have a main algorithm and optionally a compatibility algorithm
+* We can (with limitations) fetch and push using either main or compat algorithms
+* This lets us convert a repository losslessly between the two algorithms
+* Example: SHA-1 server and SHA-256 client with SHA-1 as compatibility
+
+== How It Works
+
+* Goal is to produce a lossless conversion as if we'd started in that algorithm
+* Conversion depends on object type
+** Blobs hashed with both algorithms
+
+== How It Works: Trees
+
+From this:
+
+[source]
+----
+100644 blob 3f6b2dfb66edb06a6c58440b3ebf45aa248e4365    .gitignore
+040000 tree b713ef961a71d8248ab62bee3d3a43b6d3fe257d    script
+----
+
+to this:
+
+[source]
+----
+100644 blob db76202d8bace50a177d04343c7f4834479894c83c323ca38f54afd121e88123    .gitignore
+040000 tree 851f6542e279994269198977214861878a13e18cd35373303239e086865ab97d    script
+----
+
+== How It Works: Commits
+
+From this:
+
+[source]
+----
+tree f24e9a1633cb33890195d9343bdf0a514c2f9b23
+parent d799fc4216f7f09c845c5c69ce16f5b04b40d4aa
+author brian m. carlson <sandals@crustytoothpaste.net> 1757984541 +0000
+committer brian m. carlson <sandals@crustytoothpaste.net> 1757984541 +0000
+
+Commit message
+----
+
+To this:
+
+[source]
+----
+tree a3bfd282f3015d4ba460c1db65e459bd1379aad273b9035050353dfe7a484458
+parent f77fd1d0b4b9abec2fd59d8aa3c900d25a14716afba74f1aaacb58dd385485db
+author brian m. carlson <sandals@crustytoothpaste.net> 1757984541 +0000
+committer brian m. carlson <sandals@crustytoothpaste.net> 1757984541 +0000
+
+Commit message
+----
+
+== How It Works: Tags
+
+== Limitations
+
+* Client (or server) can only map data that it has
+** Mapping a commit requires mapping every previous commit, tree, and blob
+** Partial and shallow clones, as well as submodules, mean incomplete data
+** Therefore, these cases require help from the other side
+* Risk of security problems from sending submodules
+** Remote could offer commit A in SHA-1 and commit B in SHA-256, leading to diverging histories
+
+== Where We Are: Upstream
+
+* Support for loose object mappings in a text format
+* All new objects are added to the mapping between algorithms
+* Some commands (rev-parse, cat-file) can accept either hash
+* And that's about it
+
+== What's Next: What's Written
+
+* Loose object mappings in a binary format
+** Allows storing shallows, submodules, and partial clone mapping as well
+** Works better with push quarantines
+* Packed object support (pack index v3)
+* Fetching and pushing for full clones without submodules
+** Always keeps data in packs
+* Protocol extensions for mapping objects when pushing and fetching
+** Shallow clones and fetches
+
+== What's Next: To Be Written
+
+* Lots of tests
+* Various cleanup
+* Shallow pushes
+* Partial clones
+* Submodule support
+* Garbage collection and compaction for loose object mappings
+** Removing unneeded shallow points and partial object mappings
+* `git fsck` verification of mappings and objects
+
+== What's Next: To Be Written
+
+* Conversion script for existing repositories
+** Useful for handling repositories with submodules
+*** Submodules must be converted before main repository
+* Handling objects of either format in commands
+** This is a pretty extensive change
 
 == That's it!
