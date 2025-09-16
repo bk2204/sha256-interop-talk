@@ -1,0 +1,7 @@
+= SHA-256 Interoperability: What's Next?
+:author: brian m. carlson
+:source-highlighter: pygments
+:pygments-style: paraiso-dark
+:revealjs_totalTime: 1200
+
+== That's it!

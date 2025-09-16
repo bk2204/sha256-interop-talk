@@ -1,0 +1,14 @@
+= Slides for "SHA-256 Interoperability: What's Next?"
+
+These slides were made with Asciidoctor reveal.js.
+
+== Steps to Build
+
+. `bundle config --local path .bundle/gems`
+. `bundle install`
+. `git clone -b 4.1.2 --depth 1 https://github.com/hakimel/reveal.js.git`
+. `bundle exec asciidoctor-revealjs presentation.adoc`
+. Load `presentation.html` in your preferred web browser.
+
+ To create a PDF, use your web browser's print functionality.
+ The speaker notes are visible by pressing `s`.
