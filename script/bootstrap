@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+bundle config --local path .bundle/gems
+bundle install
+[ -d reveal.js ] || git clone -b 4.1.2 --depth 1 https://github.com/hakimel/reveal.js.git
