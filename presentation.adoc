@@ -113,6 +113,8 @@ Commit message
 
 * Garbage collection and compaction for loose object mappings
 ** Removing unneeded shallow points and partial object mappings
+* Batched writing for loose object mappings
+** Currently one file is written per object, which is inefficient
 * `git fsck` verification of mappings and objects
 
 == What's Next: To Be Written
