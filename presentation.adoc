@@ -124,6 +124,6 @@ Commit message
 *** Submodules must be converted before main repository
 * Handling objects of either format in commands
 ** This is a pretty extensive change
-** This may not make it into Git 3.0
+** This may not make it into Git 3.0 or ever be written
 
 == That's it!
