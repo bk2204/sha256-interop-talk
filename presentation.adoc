@@ -103,6 +103,9 @@ Commit message
 * Shallow pushes
 * Partial clones
 * Submodule support
+
+== What's Next: To Be Written
+
 * Garbage collection and compaction for loose object mappings
 ** Removing unneeded shallow points and partial object mappings
 * `git fsck` verification of mappings and objects
@@ -114,5 +117,6 @@ Commit message
 *** Submodules must be converted before main repository
 * Handling objects of either format in commands
 ** This is a pretty extensive change
+** This may not make it into Git 3.0
 
 == That's it!
