@@ -69,8 +69,6 @@ committer brian m. carlson <sandals@crustytoothpaste.net> 1757984541 +0000
 Commit message
 ----
 
-== How It Works: Tags
-
 == Limitations
 
 * Client (or server) can only map data that it has
