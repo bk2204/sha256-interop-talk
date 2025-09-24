@@ -74,6 +74,14 @@ Commit message
 * Tags work very similarly
 --
 
+== How It Works: Repository Storage
+
+* We store all objects and data in the main algorithm
+* Objects are converted to the compatibility algorithm on demand
+* We store a mapping of object IDs between the two algorithms
+** Currently a text format, but soon a more efficient binary format
+** Facilitates easy conversion of individual objects on demand
+
 == Limitations on Interoperability
 
 * Client (or server) can only map data that it has
