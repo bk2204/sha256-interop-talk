@@ -109,12 +109,13 @@ Commit message
 * Fetching and pushing for full clones without submodules
 ** Always keeps data in packs
 * Protocol extensions for mapping objects when pushing and fetching
-** Shallow clones and fetches
+** Shallow clones and fetches for protocol v2
 
 == What's Next: To Be Written
 
 * Lots of tests
 * Various cleanup
+* Shallow clones and fetches for protocol v0
 * Shallow pushes
 * Partial clones
 * Submodule support
