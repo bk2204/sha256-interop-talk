@@ -8,6 +8,8 @@
 == Background
 
 * Git currently defaults to creating repositories with SHA-1
+* SHA-1 is weak and vulnerable to collisions
+* Git has supported SHA-256 as an option since 2020 (Git 2.29)
 * SHA-256 repositories are more secure (and soon, Git 3.0's default)
 * We want a way to convert between them
 * We don't want everyone to have to convert over at once
