@@ -92,6 +92,7 @@ Commit message
 ** Therefore, these cases require help from the other side
 * Risk of security problems from sending submodules
 ** Remote could offer commit A in SHA-1 and commit B in SHA-256, leading to diverging histories
+** For instance, could be used to offer insecure code in one algorithm
 
 == Where We Are: Upstream
 
@@ -115,6 +116,7 @@ Commit message
 
 * Lots of tests
 * Various cleanup
+** For instance, avoid recursion over untrusted data in favour of iteration
 * Shallow clones and fetches for protocol v0
 * Shallow pushes
 * Partial clones
@@ -124,6 +126,7 @@ Commit message
 
 * Garbage collection and compaction for loose object mappings
 ** Removing unneeded shallow points and partial object mappings
+** Preserve the efficiency of a repository
 * Batched writing for loose object mappings
 ** Currently one file is written per object, which is inefficient
 * `git fsck` verification of mappings and objects
@@ -133,6 +136,7 @@ Commit message
 * Conversion script for existing repositories
 ** Useful for handling repositories with submodules
 *** Submodules must be converted before main repository
+** Generally helpful for users and forges as well
 * Handling objects of either format in commands
 ** This is a pretty extensive change
 ** This may not make it into Git 3.0 or ever be written
