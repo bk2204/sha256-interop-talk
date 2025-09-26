@@ -26,6 +26,24 @@
 * Goal is to produce a lossless conversion as if we'd started in that algorithm
 * Conversion depends on object type
 ** Blobs hashed with both algorithms
+*** This is the simplest approach
+** Other types recursively convert all object references
+
+== How It Works: Trees
+
+From this:
+
+[source]
+----
+100755 blob de1ff864399ea3f3b926a1b79c8c0d41b9b50408    bootstrap
+----
+
+to this:
+
+[source]
+----
+100755 blob 26444e22e496e27dc608d36e349b53836f893d045c46255c19ffc1c7865aba90    bootstrap
+----
 
 == How It Works: Trees
 
